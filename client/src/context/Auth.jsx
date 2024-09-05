@@ -7,30 +7,33 @@ const AuthProvider = ({ children }) => {
     user: null,
     token: "",
   });
-  useEffect(() => {
-    const data = localStorage.getItem("auth");
-    if (data) {
-      const parseData = JSON.parse(data);
-      setAuth({
-        ...auth,
-        user: parseData.user,
-        token: parseData.token,
-      });
-    }
-  }, [auth]);
+
   // useEffect(() => {
   //   const data = localStorage.getItem("auth");
   //   if (data) {
   //     const parseData = JSON.parse(data);
-  //     // Only update the state if auth is different from localStorage data
-  //     if (!auth.user || auth.token !== parseData.token) {
-  //       setAuth({
-  //         user: parseData.user,
-  //         token: parseData.token,
-  //       });
-  //     }
+  //     setAuth({
+  //       ...auth,
+  //       user: parseData.user,
+  //       token: parseData.token,
+  //     });
   //   }
   // }, [auth]);
+
+  useEffect(() => {
+    const data = localStorage.getItem("auth");
+    if (data) {
+      const parseData = JSON.parse(data);
+
+      // Only update state if the data from localStorage is different
+      if (!auth.user || auth.token !== parseData.token) {
+        setAuth({
+          user: parseData.user,
+          token: parseData.token,
+        });
+      }
+    }
+  }, []);
   return (
     <AuthContext.Provider value={[auth, setAuth]}>
       {children}
