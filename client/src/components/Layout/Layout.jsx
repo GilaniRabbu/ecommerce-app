@@ -4,7 +4,13 @@ import { Helmet } from "react-helmet";
 import Header from "./Header";
 import Footer from "./Footer";
 
-const Layout = ({ children, title, description, keywords, author }) => {
+const Layout = ({
+  children,
+  title = "Ecommerce App - Shop Now",
+  description = "MERN Stack Project",
+  keywords = "mern, react, node, mongodb, express",
+  author = "Toufiq Gilani Rabbu",
+}) => {
   return (
     <div>
       <Helmet>
@@ -22,13 +28,6 @@ const Layout = ({ children, title, description, keywords, author }) => {
       <Footer />
     </div>
   );
-};
-
-Layout.defaultProps = {
-  title: "Ecommerce App - Shop Now",
-  description: "MERN Stack Project",
-  keywords: "mern, react, node, mongodb, express",
-  author: "Toufiq Gilani Rabbu",
 };
 
 export default Layout;
