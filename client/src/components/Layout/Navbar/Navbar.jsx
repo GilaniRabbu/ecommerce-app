@@ -1,15 +1,27 @@
 import React from "react";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useAuth } from "../../../context/auth";
 
 const Navbar = () => {
+  const [auth, setAuth] = useAuth();
+  const handleLogout = () => {
+    setAuth({
+      ...auth,
+      user: null,
+      token: "",
+    });
+    localStorage.removeItem("auth");
+    toast.success("Logged out successfully!");
+  };
   const [isOpen, setIsOpen] = useState(false);
   const [menuOne, setMenuOne] = useState(false);
   return (
     <section>
       <nav className="font-inter mx-auto h-auto w-full max-w-screen-2xl lg:relative lg:top-0">
         <div className="flex flex-col px-6 py-6 lg:flex-row lg:items-center lg:justify-between lg:px-10 lg:py-4 xl:px-20">
-          <NavLink to="/">
+          <Link to="/">
             <svg
               width="164"
               height="31"
@@ -63,7 +75,7 @@ const Navbar = () => {
                 fill="black"
               />
             </svg>
-          </NavLink>
+          </Link>
           <div
             className={`mt-14 flex flex-col space-y-8 lg:mt-0 lg:flex lg:flex-row lg:space-x-1 lg:space-y-0 ${
               isOpen ? "" : "hidden"
@@ -217,7 +229,7 @@ const Navbar = () => {
               to="/cart"
               className="font-inter lg: rounded-lg pb-8 lg:px-6 lg:py-4 lg: lg:hover:text-gray-800"
             >
-              Cart
+              Cart (0)
             </NavLink>
           </div>
           <div
@@ -225,18 +237,38 @@ const Navbar = () => {
               isOpen ? "" : "hidden"
             }`}
           >
-            <NavLink
-              to="/register"
-              className="font-inter rounded-lg lg:px-6 lg:py-4 lg: lg:hover:text-gray-800"
-            >
-              Sign Up
-            </NavLink>
-            <NavLink
-              to="/login"
-              className="font-inter rounded-lg bg-black px-8 py-4 text-center text-white hover:bg-gray-800"
-            >
-              Login
-            </NavLink>
+            {!auth.user ? (
+              <>
+                <NavLink
+                  to="/register"
+                  className="font-inter rounded-lg lg:px-6 lg:py-4 lg: lg:hover:text-gray-800"
+                >
+                  Sign Up
+                </NavLink>
+                <NavLink
+                  to="/login"
+                  className="font-inter rounded-lg bg-black px-8 py-4 text-center text-white hover:bg-gray-800"
+                >
+                  Login
+                </NavLink>
+              </>
+            ) : (
+              <>
+                <NavLink
+                  to="/register"
+                  className="font-inter rounded-lg lg:px-6 lg:py-4 lg: lg:hover:text-gray-800"
+                >
+                  Explore 🎯
+                </NavLink>
+                <NavLink
+                  onClick={handleLogout}
+                  to="/login"
+                  className="font-inter rounded-lg bg-black px-8 py-4 text-center text-white hover:bg-gray-800"
+                >
+                  Logout
+                </NavLink>
+              </>
+            )}
           </div>
           <button
             className="absolute right-5 lg:hidden"
