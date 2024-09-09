@@ -10,6 +10,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+  const [answer, setAnswer] = useState("");
 
   const navigate = useNavigate();
 
@@ -25,6 +26,7 @@ const Register = () => {
           password,
           phone,
           address,
+          answer,
         }
       );
       if (res && res.data.success) {
@@ -119,6 +121,20 @@ const Register = () => {
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 id="address"
+                required
+                className="mb-4 block h-9 w-full rounded-md border border-solid border-black px-3 py-6 text-sm text-black"
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="answer" className="mb-1 font-medium">
+                Reset Password
+              </label>
+              <input
+                type="text"
+                placeholder="What is your favorite sports"
+                value={answer}
+                onChange={(e) => setAnswer(e.target.value)}
+                id="answer"
                 required
                 className="mb-4 block h-9 w-full rounded-md border border-solid border-black px-3 py-6 text-sm text-black"
               />
