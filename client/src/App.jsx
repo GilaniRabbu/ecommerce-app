@@ -8,6 +8,7 @@ import Policy from "./pages/Policy";
 import PageNotFound from "./pages/PageNotFound";
 import Register from "./pages/Auth/Register";
 import Login from "./pages/Auth/Login";
+import Dashboard from "./pages/user/Dashboard";
 import "./App.css";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Toaster />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/about" element={<About />} />
