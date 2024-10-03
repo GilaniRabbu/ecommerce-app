@@ -9,19 +9,7 @@ const AuthProvider = ({ children }) => {
     token: "",
   });
 
-  // useEffect(() => {
-  //   const data = localStorage.getItem("auth");
-  //   if (data) {
-  //     const parseData = JSON.parse(data);
-  //     setAuth({
-  //       ...auth,
-  //       user: parseData.user,
-  //       token: parseData.token,
-  //     });
-  //   }
-  // }, [auth]);
-
-  // default axios
+  // Default axios
   axios.defaults.headers.common["Authorization"] = auth?.token;
 
   useEffect(() => {
@@ -46,7 +34,7 @@ const AuthProvider = ({ children }) => {
   );
 };
 
-// custom hook
+// Custom hook
 const useAuth = () => useContext(AuthContext);
 
 export { useAuth, AuthProvider };
