@@ -120,7 +120,9 @@ const Navbar = () => {
                           role="menuitem"
                           tabIndex={-1}
                           id="menu-item-1"
-                          to="/dashboard"
+                          to={`/dashboard/${
+                            auth?.user?.role === 1 ? "admin" : "user"
+                          }`}
                           onClick={closeDropdown}
                         >
                           Dashboard
