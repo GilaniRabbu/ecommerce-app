@@ -13,14 +13,14 @@ export const createCategoryController = async (req, res) => {
     if (existingCategory) {
       return res.status(200).send({
         success: true,
-        message: "Category already exists",
+        message: "Category Already Exists",
       });
     }
 
     const category = await new categoryModel({ name, slug: slugify(name) }).save();
     res.status(201).send({
       success: true,
-      message: "Category created successfully",
+      message: "Category Created Successfully",
       category,
     });
   } catch (error) {
@@ -49,7 +49,45 @@ export const updateCategoryController = async (req, res) => {
     res.status(500).send({
       success: false,
       error,
-      message: "Error in updating Category",
+      message: "Error in Updating Category",
+    });
+  };
+};
+
+// Get All Category
+export const categoryController = async (req, res) => {
+  try {
+    const category = await categoryModel.find({});
+    res.status(200).send({
+      success: true,
+      message: "Categories Fetched Successfully",
+      category,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      error,
+      message: "Error in Fetching Categories",
+    });
+  };
+};
+
+// Single Category
+export const singleCategoryController = async (req, res) => {
+  try {
+    const category = await categoryModel.findOne({ slug: req.params.slug });
+    res.status(200).send({
+      success: true,
+      message: "Get Single Category Successfully",
+      category,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      error,
+      message: "Error in Fetching Single Category",
     });
   }
-}
+};
