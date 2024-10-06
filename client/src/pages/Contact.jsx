@@ -11,11 +11,12 @@ const Contact = () => {
           <div className="max-w-3xl">
             {/* Title */}
             <h2 className="mb-2 text-3xl font-bold md:text-5xl">
-              Let's build something exciting together!
+              Tell Us How We Can Help
             </h2>
             <p className="my-4 max-w-lg pb-4 text-sm text-gray-500 sm:text-base md:mb-6 lg:mb-8">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
-              aliquam, purus sit amet luctus venenatis, lectus
+              We’re here to help you! Whether you have questions about our
+              products, need assistance with your order, or want to share your
+              feedback, feel free to reach out.
             </p>
             {/* Testimonial */}
             <div className="mb-4 flex items-center text-orange-500">
@@ -86,26 +87,27 @@ const Contact = () => {
               </svg>
             </div>
             <p className="mb-8 max-w-lg text-sm text-gray-500 sm:text-base">
-              Lorem ipsum dolor sit amet, &nbsp;elit ut aliquam, purus sit amet
-              luctus venenatis elit ut aliquam, purus sit amet luctus venenatis
+              Your satisfaction is our top priority, and we look forward to
+              hearing from you!
             </p>
             <div className="flex">
               <img
-                src="https://firebasestorage.googleapis.com/v0/b/flowspark-1f3e0.appspot.com/o/Tailspark%20Images%2FPlaceholder%20Image.svg?alt=media&token=375a1ea3-a8b6-4d63-b975-aac8d0174074"
+                src="/contact-assets.svg"
                 alt=""
                 className="mr-4 inline-block h-16 w-16 rounded-full object-cover"
               />
               <div className="flex flex-col">
                 <h6 className="text-base font-bold">Murat Hakim</h6>
-                <p className="text-sm text-gray-500">Developer</p>
+                <p className="text-sm text-gray-500">Manager</p>
               </div>
             </div>
           </div>
           <div className="mx-auto max-w-xl bg-gray-100 p-8 text-center">
             <h3 className="text-2xl font-bold md:text-3xl">Get a free quote</h3>
             <p className="mx-auto mb-6 mt-4 max-w-lg text-sm text-gray-500 lg:mb-8">
-              Lorem ipsum dolor sit amet consectetur adipiscing elit ut
-              aliquam,purus sit amet luctus magna fringilla urna
+              Please fill out the form below with your details and a brief
+              message about your inquiry, and our team will get back to you as
+              soon as possible.
             </p>
             {/* Form */}
             <form

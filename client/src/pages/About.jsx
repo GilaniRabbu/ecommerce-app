@@ -17,7 +17,7 @@ const About = () => {
         </p>
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-12">
           <img
-            src="https://assets.website-files.com/6458c625291a94a195e6cf3a/64b7a30c42421ae3cbe5abb9_about%20image.svg"
+            src="about-assets.svg"
             alt=""
             className="inline-block h-full w-full rounded-2xl object-cover"
           />
