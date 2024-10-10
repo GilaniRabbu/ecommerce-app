@@ -1,8 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import axios from "axios";
 import Layout from "../../components/Layout/Layout";
 import AdminMenu from "../../components/Layout/AdminMenu";
 
 const CreateCategory = () => {
+  const [categories, setCategories] = useState([]);
+
+  // Get all categories
+  const getAllCategory = async () => {
+    try {
+      const { data } = await axios.get("/api/v1/category/get-category");
+      if (data.success) {
+        setCategories(data.category);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong in getting category");
+    }
+  };
+
+  useEffect(() => {
+    getAllCategory();
+  }, []);
+
   return (
     <Layout title={"Dashboard - Create Category"}>
       <div className="container mx-auto">
@@ -11,7 +32,29 @@ const CreateCategory = () => {
             <AdminMenu />
           </div>
           <div className="border border-teal-500 col-span-2 p-5">
-            <h1>Create Category</h1>
+            <h1>Manage Category</h1>
+            <div>
+              <table className="table-fixed border-separate border-spacing-2 border border-slate-400">
+                <thead>
+                  <tr>
+                    <th className="border border-slate-300">Name</th>
+                    <th className="border border-slate-300">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {categories.map((c) => {
+                    <>
+                      <tr className="border border-slate-300">
+                        <td key={c._id}>{c.name}</td>;
+                        <td className="border border-slate-300">
+                          <button className="">Edit</button>
+                        </td>
+                      </tr>
+                    </>;
+                  })}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
