@@ -3,9 +3,21 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import Layout from "../../components/Layout/Layout";
 import AdminMenu from "../../components/Layout/AdminMenu";
+import CategoryForm from "../../components/Form/CategoryForm";
 
 const CreateCategory = () => {
   const [categories, setCategories] = useState([]);
+  const [name, setName] = useState("");
+
+  // Handle Form
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong in input form");
+    }
+  };
 
   // Get all categories
   const getAllCategory = async () => {
@@ -33,6 +45,9 @@ const CreateCategory = () => {
           </div>
           <div className="border border-teal-500 col-span-2 p-5">
             <h1>Manage Category</h1>
+            <div className="p-3">
+              <CategoryForm />
+            </div>
             <div>
               <table className="table-fixed border-separate border-spacing-2 border border-slate-400">
                 <thead>
