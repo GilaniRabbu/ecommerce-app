@@ -4,7 +4,7 @@ const CategoryForm = ({ handleSubmit, value, setValue }) => {
   return (
     <>
       <div className="mx-auto mb-4 max-w-sm pb-4">
-        <form name="wf-form-password" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <input
             type="text"
             className="mb-4 block h-9 w-full rounded-md border border-solid border-black px-4 py-2 pl-14 text-sm text-black placeholder:text-black"

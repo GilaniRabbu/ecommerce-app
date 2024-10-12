@@ -13,6 +13,14 @@ const CreateCategory = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const { data } = await axios.post("/api/v1/category/create-category", {
+        name,
+      });
+      if (data?.success) {
+        toast.success(`${name} is created`);
+      } else {
+        toast.error(data.message);
+      }
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong in input form");
@@ -46,27 +54,33 @@ const CreateCategory = () => {
           <div className="border border-teal-500 col-span-2 p-5">
             <h1>Manage Category</h1>
             <div className="p-3">
-              <CategoryForm />
+              <CategoryForm
+                handleSubmit={handleSubmit}
+                value={name}
+                setValue={setName}
+              />
             </div>
             <div>
               <table className="table-fixed border-separate border-spacing-2 border border-slate-400">
                 <thead>
                   <tr>
-                    <th className="border border-slate-300">Name</th>
-                    <th className="border border-slate-300">Actions</th>
+                    <th className="p-2 border border-slate-300">Name</th>
+                    <th className="p-2 border border-slate-300">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {categories.map((c) => {
+                  {categories?.map((c) => (
                     <>
-                      <tr className="border border-slate-300">
-                        <td key={c._id}>{c.name}</td>;
-                        <td className="border border-slate-300">
+                      <tr>
+                        <td className="p-2 border border-slate-300" key={c._id}>
+                          {c.name}
+                        </td>
+                        <td className="p-2 border border-slate-300">
                           <button className="">Edit</button>
                         </td>
                       </tr>
-                    </>;
-                  })}
+                    </>
+                  ))}
                 </tbody>
               </table>
             </div>
