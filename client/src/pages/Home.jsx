@@ -48,8 +48,29 @@ const Home = () => {
   };
 
   useEffect(() => {
-    getAllProducts();
-  }, []);
+    if (!checked.length || !radio.length) {
+      getAllProducts();
+    }
+  }, [checked.length, radio.length]);
+
+  useEffect(() => {
+    if (checked.length || radio.length) {
+      filterProducts();
+    }
+  }, [checked, radio]);
+
+  // Get Filtered Product
+  const filterProducts = async () => {
+    try {
+      const { data } = await axios.post("/api/v1/product/product-filters", {
+        checked,
+        radio,
+      });
+      setProducts(data?.products);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Layout title={"All Products - Best Offers"}>
@@ -79,11 +100,19 @@ const Home = () => {
                 ))}
               </Radio.Group>
             </div>
+            <div className="flex flex-col">
+              <button
+                className="border border-blue-600 text-blue-600"
+                onClick={() => window.location.reload()}
+              >
+                RESET BUTTON
+              </button>
+            </div>
           </div>
           <div className="border border-black col-span-2 p-5">
-            {JSON.stringify(radio, null, 4)}
+            {/*{JSON.stringify(radio, null, 4)}*/}
             <h1>All Products</h1>
-            <div className="flex flex-wrap">
+            <div className="flex flex-wrap gap-4">
               {products?.map((p) => (
                 <div className="flex max-w-sm flex-col items-center gap-4 rounded-md border border-solid border-gray-300 px-8 py-6 md:max-w-full md:items-start">
                   <img
@@ -92,7 +121,10 @@ const Home = () => {
                     className="mb-4 mx-auto inline-block w-40 object-cover"
                   />
                   <p className="font-bold">{p.name}</p>
-                  <p className="text-sm text-gray-500">{p.description}</p>
+                  <p className="text-sm text-gray-500">
+                    {p.description.substring(0, 30)}...
+                  </p>
+                  <p className="text-md text-blue-600">$ {p.price}</p>
                   <button>More Details</button>
                   <button>Add to Cart</button>
                 </div>
