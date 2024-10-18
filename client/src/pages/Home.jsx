@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { Checkbox, Radio } from "antd";
 import Layout from "../components/Layout/Layout";
 import { Prices } from "../components/Prices/Prices";
 
 const Home = () => {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [checked, setChecked] = useState([]);
@@ -160,7 +162,9 @@ const Home = () => {
                     {p.description.substring(0, 30)}...
                   </p>
                   <p className="text-md text-blue-600">$ {p.price}</p>
-                  <button>More Details</button>
+                  <button onClick={() => navigate(`/product/${p.slug}`)}>
+                    More Details
+                  </button>
                   <button>Add to Cart</button>
                 </div>
               ))}
