@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useAuth } from "../../../context/auth";
+import SearchInput from "../../Form/SearchInput";
 
 const Navbar = () => {
   const [auth, setAuth] = useAuth();
@@ -39,6 +40,7 @@ const Navbar = () => {
               isOpen ? "" : "hidden"
             }`}
           >
+            <SearchInput />
             <NavLink
               to="/"
               className="font-inter rounded-lg lg:px-6 lg:py-4 lg: lg:hover:text-gray-800"

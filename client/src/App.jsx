@@ -20,6 +20,7 @@ import Profile from "./pages/User/Profile";
 import Orders from "./pages/User/Orders";
 import Products from "./pages/Admin/Products";
 import UpdateProduct from "./pages/Admin/UpdateProduct";
+import Search from "./pages/Search";
 import "./App.css";
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
       <Toaster />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/dashboard" element={<PrivateRoute />}>
           <Route path="user" element={<Dashboard />} />
           <Route path="user/profile" element={<Profile />} />
