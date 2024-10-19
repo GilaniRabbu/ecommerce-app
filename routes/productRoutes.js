@@ -10,6 +10,7 @@ import {
   productFiltersController,
   productListController,
   productPhotoController,
+  relatedProductController,
   searchProductController,
   updateProductController,
 } from "../controllers/productController.js";
@@ -58,5 +59,8 @@ router.get("/product-list/:page", productListController);
 
 // Search Product
 router.get("/search/:keyword", searchProductController);
+
+// Similar Product
+router.get("/related-product/:pid/:cid", relatedProductController);
 
 export default router;

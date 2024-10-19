@@ -282,3 +282,26 @@ export const searchProductController = async (req, res) => {
     });
   }
 }
+
+// Similar Product
+export const relatedProductController = async (req, res) => {
+  try {
+    const { pid, cid } = req.params;
+    const products = await productModel.find({
+      category: cid,
+      _id: { $ne: pid },
+    }).select("-photo").limit(3).populate("category");
+    res.status(200).send({
+      success: true,
+      message: "Similar Products Fetching Successfully",
+      products,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(404).send({
+      success: false,
+      error,
+      message: "Error in Fetching Similar Products",
+    });
+  }
+}
