@@ -3,9 +3,12 @@ import { NavLink, Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useAuth } from "../../../context/auth";
 import SearchInput from "../../Form/SearchInput";
+import useCategory from "../../../hooks/useCategory";
+import { Button, Dropdown, Space } from "antd";
 
 const Navbar = () => {
   const [auth, setAuth] = useAuth();
+  const categories = useCategory();
 
   const handleLogout = () => {
     setAuth({
@@ -28,6 +31,22 @@ const Navbar = () => {
     setDropdown(false);
   };
 
+  const items = categories.map((category) => ({
+    key: category._id,
+    label: (
+      <Link rel="noopener noreferrer" to={`/category/${category.slug}`}>
+        {category.name}
+      </Link>
+    ),
+  }));
+
+  const allCategories = {
+    key: "custom",
+    label: <Link to={"/categories"}>All Categories</Link>, // Example custom item
+  };
+
+  const allItems = [allCategories, ...items];
+
   return (
     <section>
       <nav className="font-inter mx-auto h-auto w-full max-w-screen-2xl lg:relative lg:top-0">
@@ -47,12 +66,19 @@ const Navbar = () => {
             >
               Home
             </NavLink>
-            <NavLink
-              to="/category"
-              className="font-inter rounded-lg lg:px-6 lg:py-4 lg: lg:hover:text-gray-800"
-            >
-              Category
-            </NavLink>
+            <Space direction="vertical">
+              <Space wrap>
+                <Dropdown
+                  menu={{ items: allItems }}
+                  placement="bottomRight"
+                  arrow
+                >
+                  <Button>
+                    <Link>Categories</Link>
+                  </Button>
+                </Dropdown>
+              </Space>
+            </Space>
             <NavLink
               to="/cart"
               className="font-inter lg: rounded-lg pb-8 lg:px-6 lg:py-4 lg: lg:hover:text-gray-800"
@@ -65,7 +91,7 @@ const Navbar = () => {
               isOpen ? "" : "hidden"
             }`}
           >
-            {!auth.user ? (
+            {!auth?.user ? (
               <>
                 <NavLink
                   to="/register"
