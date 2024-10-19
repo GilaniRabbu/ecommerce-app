@@ -4,10 +4,12 @@ import toast from "react-hot-toast";
 import { useAuth } from "../../../context/auth";
 import SearchInput from "../../Form/SearchInput";
 import useCategory from "../../../hooks/useCategory";
-import { Button, Dropdown, Space } from "antd";
+import { useCart } from "../../../context/Cart";
+import { Button, Dropdown, Space, Badge } from "antd";
 
 const Navbar = () => {
   const [auth, setAuth] = useAuth();
+  const [cart] = useCart();
   const categories = useCategory();
 
   const handleLogout = () => {
@@ -79,12 +81,14 @@ const Navbar = () => {
                 </Dropdown>
               </Space>
             </Space>
-            <NavLink
-              to="/cart"
-              className="font-inter lg: rounded-lg pb-8 lg:px-6 lg:py-4 lg: lg:hover:text-gray-800"
-            >
-              Cart (0)
-            </NavLink>
+            <Badge count={cart?.length} showZero>
+              <NavLink
+                to="/cart"
+                className="font-inter lg: rounded-lg pb-8 lg:px-6 lg:py-4 lg: lg:hover:text-gray-800"
+              >
+                Cart
+              </NavLink>
+            </Badge>
           </div>
           <div
             className={`flex flex-col space-y-8 lg:flex lg:flex-row lg:space-x-3 lg:space-y-0 ${
