@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import DropIn from "braintree-web-drop-in-react";
+import toast from "react-hot-toast";
+import axios from "axios";
+
 import { useAuth } from "../context/auth";
 import { useCart } from "../context/Cart";
 import Layout from "../components/Layout/Layout";
@@ -8,6 +12,9 @@ const CartPage = () => {
   const navigate = useNavigate();
   const [auth, setAuth] = useAuth();
   const [cart, setCart] = useCart();
+  const [clientToken, setClientToken] = useState("");
+  const [instance, setInstance] = useState("");
+  const [loading, setLoading] = useState(false);
 
   // Total Price
   const totalPrice = () => {
@@ -37,6 +44,20 @@ const CartPage = () => {
       console.log(error);
     }
   };
+
+  // Get Payment Gateway Token
+  /*const getToken = async () => {
+    try {
+      const { data } = await axios.get("/api/v1/product/braintree/token");
+      setClientToken(data?.clientToken);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getToken();
+  }, [auth?.token]);*/
 
   return (
     <Layout>
