@@ -360,10 +360,10 @@ export const brainTreeTokenController = async (req, res) => {
 // Payments
 export const brainTreePaymentController = async (req, res) => {
   try {
-    const { cart, nonce } = req.body;
+    const { nonce, cart } = req.body;
     let total = 0;
     cart.map((i) => {
-      total += i.price
+      total += i.price;
     });
     let newTransaction = gateway.transaction.sale({
       amount: total,
