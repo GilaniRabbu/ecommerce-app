@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import toast from "react-hot-toast";
-import { useAuth } from "../../../context/auth";
+import { useAuth } from "../../../context/Auth";
 import SearchInput from "../../Form/SearchInput";
 import useCategory from "../../../hooks/useCategory";
 import { useCart } from "../../../context/Cart";
