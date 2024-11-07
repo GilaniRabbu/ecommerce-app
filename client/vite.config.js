@@ -14,4 +14,9 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    rollupOptions: {
+      external: ['antd'], // externalize antd to avoid bundling
+    },
+  },
 });
