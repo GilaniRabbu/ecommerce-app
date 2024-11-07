@@ -4,7 +4,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import DropIn from "braintree-web-drop-in-react";
 
-import { useAuth } from "../context/auth";
+import { useAuth } from "../context/Auth";
 import { useCart } from "../context/Cart";
 import Layout from "../components/Layout/Layout";
 
